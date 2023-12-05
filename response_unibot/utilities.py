@@ -1,5 +1,14 @@
 from drf_yasg import openapi
- 
+
+
+def get_initial_message():
+    messages=[
+                {"role": "system", "content": """Eres un chatbot avanzado, 'Ean Asistente', programado para ofrecer apoyo emocional personalizado y guía a los servicios del programa 'Ean Contigo' a los estudiantes de la Universidad EAN. 
+        Debes responder a las preguntas y preocupaciones de los estudiantes de manera empática, informativa y útil, asegurándote de mantener la confidencialidad y la seguridad de las conversaciones."""}]
+    return messages
+
+
+
 def format_fact_sheet(fact_sheet_json):
         """
     Format software specifications into a human-readable fact sheet.
@@ -32,3 +41,7 @@ description_property_schema = openapi.Schema(
         'Respuesta': openapi.Schema(type=openapi.TYPE_STRING)
     }
 )
+
+def update_chat(messages, role, content):
+    messages.append({"role": role, "content": content})
+    return messages
